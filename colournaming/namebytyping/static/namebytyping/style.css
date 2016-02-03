@@ -1,0 +1,63 @@
+#image {
+  width:45em;
+  height: 25em;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+#textbox-div {
+  width: 30em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:auto;
+  margin-bottom: 1em;
+}
+
+#submitbutton {
+  width: 15em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background-color: #68c4af;
+  border-radius: 30px;
+}
+
+h4 {
+  font-family: 'Montserrat', serif;
+  font-size: 18px;
+}
+
+#submitbutton:hover {
+  background-color: #25a071;
+}
+
+#submitbutton:focus {
+  background-color: #1766b5;
+}
+
+#textbox {
+  width: 75%;
+  height: 100%;
+  font-family: 'Montserrat', serif;
+  font-size: 18px;
+}
+
+#hidden-textbox {
+  display: none;
+}

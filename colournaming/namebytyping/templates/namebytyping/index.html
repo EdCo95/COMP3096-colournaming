@@ -1,7 +1,25 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'namebytyping/style.css' %}" />
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
 <div id = "image">
-  <h1>The Image Will Go Here</h1>
+  {%if image_number%}
+  <img src="../static/namebytyping/images/{{ image_number }}.png">
+  {% endif %}
 </div>
 
-<div id = "button">
-  <h3>Click For Next Image</h3>
-</div>
+<form action="{% url 'namebytyping:submit' %}" method="post">
+      {% csrf_token %}
+      <div id="textbox-div">
+        <input type="text" name="colourname" id="textbox">
+      </div>
+
+      <div id="submitbutton" onclick="this.parentNode.submit()" tabindex="1" name="colourname">
+        <h4>Submit</h4>
+      </div>
+
+      <div id="hidden-textbox">
+        <input type="text" name="imagenumber" id="hidden-textbox" value="{{ image_number }}">
+      </div>
+</form>
