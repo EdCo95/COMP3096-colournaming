@@ -1,0 +1,41 @@
+<div id="time-setter">
+  <input type="text" id="time-start" value="{{ time_elapsed }}">
+</div>
+
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'namebytyping/style.css' %}" />
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="{% static 'namebytyping/countdown.js' %}"></script>
+
+<div id = "image">
+  {%if image_number%}
+  <img src="../../static/namebytyping/images/{{ image_number }}.png">
+  {% endif %}
+</div>
+
+<div id="timer">
+  {{ time }}
+</div>
+
+<form action="{% url 'namebytyping:submit' %}" method="post">
+      {% csrf_token %}
+
+      <div id="textbox-div">
+        <input type="text" name="colourname" id="textbox" onKeyPress="return submitenter(this,event)">
+      </div>
+
+      <div id="submitbutton" onclick="this.parentNode.submit()" tabindex="1" name="colourname">
+        <h4>Submit</h4>
+      </div>
+
+      <div id="hidden-textbox">
+        <input type="text" name="imagenumber" id="hidden-textbox" value="{{ image_number }}">
+      </div>
+
+      <div id="time-tracker">
+        <input type="text" name="timer" id="time-tracker-box">
+      </div>
+</form>

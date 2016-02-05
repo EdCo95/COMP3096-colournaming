@@ -1,25 +1,28 @@
 {% load staticfiles %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'namebytyping/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'namebytyping/style-index.css' %}" />
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 
-<div id = "image">
-  {%if image_number%}
-  <img src="../static/namebytyping/images/{{ image_number }}.png">
-  {% endif %}
+<div class="main-container">
+    <div class="title"><h1>Colour Naming</h1></div>
+    <div class="instructions">
+      <p>This test will run for 3 minutes. You will be shown one image at a time
+         with an area circled. Your goal is to type the colour contained
+         in the circle in each image. You should enter the first colour that comes
+         to your mind but try to be as descriptive as possible, for example
+         “lavender” instead of “purple” or “dark orange” instead of “orange”.
+         Once the timer expires, you will be allowed to finish your answer for the current
+         image.
+      </p>
+    </div>
+  <form action="{% url 'namebytyping:begin' %}" method="post">
+    {% csrf_token %}
+    <div id="begin-button" class="button" onclick="this.parentNode.submit()" name="begin">
+      <h4>Begin</h4>
+    </div>
+  </form>
+
+  <div class="spacing">
+  </div>
+
 </div>
-
-<form action="{% url 'namebytyping:submit' %}" method="post">
-      {% csrf_token %}
-      <div id="textbox-div">
-        <input type="text" name="colourname" id="textbox">
-      </div>
-
-      <div id="submitbutton" onclick="this.parentNode.submit()" tabindex="1" name="colourname">
-        <h4>Submit</h4>
-      </div>
-
-      <div id="hidden-textbox">
-        <input type="text" name="imagenumber" id="hidden-textbox" value="{{ image_number }}">
-      </div>
-</form>

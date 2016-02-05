@@ -1,0 +1,24 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'namebytyping/style-index.css' %}" />
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+<div class="main-container">
+    <div class="title"><h1>Thank You!</h1></div>
+    <div class="instructions">
+      <p>
+         The test is now complete, thank you for your time. Please feel free to
+         take the test again by clicking the button below.
+      </p>
+    </div>
+  <form action="{% url 'namebytyping:rerun' %}" method="post">
+    {% csrf_token %}
+    <div id="rerun-button" class="button" onclick="this.parentNode.submit()" name="rerun">
+      <h4>Again!</h4>
+    </div>
+  </form>
+
+  <div class="spacing">
+  </div>
+
+</div>
