@@ -6,16 +6,18 @@ from django.template import Context
 import random
 import math
 
-already_seen = []
 number_of_images = 11
-time_elapsed = 0
 total_time = 180
 
 def index(request):
+    request.session['already_seen'] = []
+    request.session['time_elapsed'] = 0
+    request.session['count'] = 0
     return render(request, 'namebytyping/index.html')
 
 def test(request):
-
+    already_seen = request.session.get('already_seen')
+    time_elapsed = request.session.get('time_elapsed')
     while True:
         image_number = random.randint(1, number_of_images)
         if len(already_seen) == number_of_images:
@@ -34,26 +36,32 @@ def test(request):
             else:
                 time = "0" + str(minutes) + ":" + str(seconds)
 
+            request.session['already_seen'] = already_seen
+            count = request.session.get('count')
+            count += 1
+            request.session['count'] = count
             return render(request, 'namebytyping/test.html', {'image_number' : image_number,
                                                               'time_elapsed' : time_elapsed,
-                                                              'time' : time})
+                                                              'time' : time,
+                                                              'count' : count })
 
-    global time_elapsed
-    global already_seen
-    del already_seen[:]
-    time_elapsed = 0;
+    request.session['already_seen'] = []
+    request.session['time_elapsed'] = 0;
     return HttpResponseRedirect(reverse('namebytyping:complete'))
 
 def results(request):
     responses = Response.objects.all()
-    return render(request, 'namebytyping/results.html', {'responses': responses})
+    images_count = []
+    for i in range(1, number_of_images + 1):
+        images_count.append(i)
+    return render(request, 'namebytyping/results.html', {'responses': responses,
+                                                         'images_count' : images_count})
 
 def submit(request):
     colourname = request.POST['colourname']
     imagenumber = request.POST['imagenumber']
     time = request.POST['timer']
-    global time_elapsed
-    time_elapsed = time
+    request.session['time_elapsed'] = time
     data_to_save = Response(colour_name = colourname, image_number = imagenumber)
     data_to_save.save()
     return HttpResponseRedirect(reverse('namebytyping:test'))

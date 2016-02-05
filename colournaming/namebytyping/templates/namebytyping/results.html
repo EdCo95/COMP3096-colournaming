@@ -1,6 +1,20 @@
 <h1>The Results</h1>
-<ul>
-{% for response in responses %}
-    <li>For <b>Image</b>: {{response.image_number}} <b>Colour Name</b> is: {{response.colour_name}} </li>
+<table border="1">
+{% for i in images_count %}
+
+      <tr>
+        <td>{{ i }}</td>
+        <td><img src="../../static/namebytyping/images/{{ i }}.png"></td>
+        <td>
+        {% for response in responses %}
+        <ul>
+        {% if response.image_number == i %}
+          <li>{{response.colour_name}}</li>
+        {% endif %}
+        </ul>
+        {% endfor %}
+        </td>
+      </tr>
+
 {% endfor %}
-</ul>
+</table>
