@@ -28,6 +28,9 @@ def test(request):
             time_remaining = total_time - int(time_elapsed)
             minutes = int(math.floor(time_remaining / 60))
             seconds = int(time_remaining - minutes * 60)
+            #next two lines is the code to determing the centre of the circle drawn on the image
+            circlex = random.randint(20,280); #circle cannot leave image, so centre must be at least 20 from edge
+            circley = random.randint(20,380);
 
             if seconds == 0:
                 time = "0" + str(minutes) + ":" + str(seconds) + "0"
@@ -36,7 +39,9 @@ def test(request):
 
             return render(request, 'namebytyping/test.html', {'image_number' : image_number,
                                                               'time_elapsed' : time_elapsed,
-                                                              'time' : time})
+                                                              'time' : time,
+                                                              'circlex' : circlex,
+                                                              'circley' : circley})
 
     global time_elapsed
     global already_seen

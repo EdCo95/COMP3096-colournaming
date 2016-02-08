@@ -3,17 +3,22 @@
 </div>
 
 {% load staticfiles %}
-
 <link rel="stylesheet" type="text/css" href="{% static 'namebytyping/style.css' %}" />
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script src="{% static 'namebytyping/countdown.js' %}"></script>
 
-<div id = "image">
+<div class = "image">
   {%if image_number%}
-  <img src="../../static/namebytyping/images/{{ image_number }}.png">
+  <img src="../../static/namebytyping/images/{{ image_number }}.jpg">
   {% endif %}
+</div>
+<div class = "image">
+    <svg height="400" width="300">
+
+        <circle id="circle" cx="{{ circlex }}" cy="{{ circley }}" r="20" stroke="black" stroke-width="2" fill="none" />
+    </svg>
 </div>
 
 <div id="timer">
