@@ -1,7 +1,3 @@
-<div id="time-setter">
-  <input type="text" id="time-start" value="{{ time_elapsed }}">
-</div>
-
 <h1>{{ session_key }}</h1>
 
 {% load staticfiles %}
@@ -9,22 +5,13 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script src="{% static 'namebytyping/countdown.js' %}"></script>
+<script src="../../static/namebytyping/functions.js"></script>
 
 <div class = "image">
-  {%if image_number%}
-  <img src="../../static/namebytyping/images/{{ image_number }}.jpg">
-  {% endif %}
-</div>
-<div class = "image">
-    <svg height="400" width="300">
-
-        <circle id="circle" cx="{{ circlex }}" cy="{{ circley }}" r="20" stroke="black" stroke-width="2" fill="none" />
-    </svg>
-</div>
-
-<div id="timer">
-  {{ time }}
+  <img id="shown-image" src="../../static/namebytyping/images/{{ image_number }}.jpg"/>
+  <div class="overlay" id="overlay">
+    <div class="shape" style="top:{{ circley }}; left:{{ circlex }};"></div>
+  </div>
 </div>
 
 <form action="{% url 'namebytyping:submit' %}" method="post">
@@ -34,15 +21,16 @@
         <input type="text" name="colourname" id="textbox" onKeyPress="return submitenter(this,event)">
       </div>
 
-      <div id="submitbutton" onclick="this.parentNode.submit()" tabindex="1" name="colourname">
+      <div id="submitbutton" class="button" onclick="this.parentNode.submit()" name="colourname">
         <h4>Submit</h4>
+      </div>
+
+      <div class="button" id="help-button">
+        <h4>I Can't See The Circle</h4>
       </div>
 
       <div id="hidden-textbox">
         <input type="text" name="imagenumber" id="hidden-textbox" value="{{ image_number }}">
       </div>
 
-      <div id="time-tracker">
-        <input type="text" name="timer" id="time-tracker-box">
-      </div>
 </form>

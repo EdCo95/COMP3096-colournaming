@@ -10,3 +10,11 @@ class Response(models.Model):
 
     colour_name = models.CharField(max_length = 200)
     image_number = models.IntegerField(default = -1)
+
+class Time(models.Model):
+
+    def __str__(self):
+        string = "Total time taken for 100 images: " + str(self.time_elapsed)
+        return string
+
+    time_elapsed = models.IntegerField(default = -1)

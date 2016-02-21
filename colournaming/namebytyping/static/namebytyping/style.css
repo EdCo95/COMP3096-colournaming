@@ -1,31 +1,42 @@
 .image {
-  width:100%;
+  width:600px;
   height: 400px;
-  top: 10px;
-  position: absolute;
   margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 0.5em;
+  position: relative;
 }
 
-#timer {
-  width: 40em;
-  height: 2em;
-  margin: auto;
-  margin-top: 400px;
-  margin-bottom: 1em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Inconsolata', serif;
-  font-size: 24px;
-}
-
-img {
+#shown-image {
   max-height: 100%;
   max-width: 100%;
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute;
+  z-index: 2;
+  //background-color: blue;
+  //opacity: 0.5;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  overflow: hidden;
+}
+
+.shape {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  border: 3px solid black;
+  position: absolute;
 }
 
 #textbox-div {
@@ -39,7 +50,7 @@ img {
 
 }
 
-#submitbutton {
+.button {
   width: 15em;
   height: 2em;
   display: flex;
@@ -48,6 +59,21 @@ img {
   margin: auto;
   background-color: #68c4af;
   border-radius: 30px;
+  margin-bottom: 1em;
+  box-shadow: 0px 0px 10px grey;
+}
+
+#submitbutton {
+  width: 16em;
+}
+
+#help-button {
+  width: 14em;
+}
+
+.button:active {
+  box-shadow: 0px 0px 0px black;
+  color:white;
 }
 
 h4 {
@@ -55,12 +81,8 @@ h4 {
   font-size: 18px;
 }
 
-#submitbutton:hover {
+.button:hover {
   background-color: #25a071;
-}
-
-#submitbutton:focus {
-  background-color: #1766b5;
 }
 
 #textbox {
@@ -71,13 +93,5 @@ h4 {
 }
 
 #hidden-textbox {
-  display: none;
-}
-
-#time-tracker {
-  display: none;
-}
-
-#time-setter {
   display: none;
 }
