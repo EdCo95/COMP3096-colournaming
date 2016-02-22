@@ -4,8 +4,10 @@
 <link rel="stylesheet" type="text/css" href="{% static 'namebytyping/style.css' %}" />
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="{% static 'namebytyping/speech-input.css' %}" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script src="../../static/namebytyping/functions.js"></script>
+
 
 <div class = "image">
   <img id="shown-image" src="../../static/namebytyping/images/{{ image_number }}.jpg"/>
@@ -17,10 +19,15 @@
 <form action="{% url 'namebytyping:submit' %}" method="post">
       {% csrf_token %}
 
-      <div id="textbox-div">
-        <input type="text" name="colourname" id="textbox" onKeyPress="return submitenter(this,event)">
+      <div class="si-wrapper" id="textbox-div">
+        <input type="text" class="si-input" name="colourname" id="textbox" onKeyPress="return submitenter(this,event)" placeholder="What's up?">
+        <button class="si-btn">
+            speech input
+            <span class="si-mic"></span>
+            <span class="si-holder"></span>
+        </button>
       </div>
-
+    <script src="../../static/namebytyping/speech-input.js"></script>
       <div id="submitbutton" class="button" onclick="this.parentNode.submit()" name="colourname">
         <h4>Submit</h4>
       </div>
