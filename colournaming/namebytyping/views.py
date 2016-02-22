@@ -7,7 +7,7 @@ import random
 import math
 import time
 
-number_of_images = 11
+number_of_images = 40
 total_time = 180
 
 def index(request):
