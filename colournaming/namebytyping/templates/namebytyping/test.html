@@ -16,12 +16,12 @@
   </div>
 </div>
 
-<form action="{% url 'namebytyping:submit' %}" method="post">
+<form action="{% url 'namebytyping:submit' %}" method="post" id="input-form">
       {% csrf_token %}
 
       <div class="si-wrapper" id="textbox-div">
         <input type="text" class="si-input" name="colourname" id="textbox" onKeyPress="return submitenter(this,event)" placeholder="What's up?">
-        <button class="si-btn">
+        <button class="si-btn" id="speech-button">
             speech input
             <span class="si-mic"></span>
             <span class="si-holder"></span>

@@ -5,7 +5,7 @@
 
 	if (! ('webkitSpeechRecognition' in window) ) return;
 
-	var talkMsg = 'start talking';
+	var talkMsg = 'Start Talking';
 	var patience = 6;
 
 	function capitalize(str) {
@@ -67,6 +67,7 @@
 			finalTranscript = capitalize(finalTranscript);
 			inputEl.value = finalTranscript;
 			restartTimer();
+			document.getElementById('input-form').submit();
 		};
 
 		micBtn.addEventListener('click', function(event) {

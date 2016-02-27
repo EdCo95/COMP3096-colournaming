@@ -12,6 +12,10 @@ window.onload = function(){
   text_input.select ();
 }
 
+window.onload = function(){
+  $('#speech-button').trigger('click');
+}
+
 function submitenter(myfield,e)
 {
   var keycode;
