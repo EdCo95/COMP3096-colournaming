@@ -1,3 +1,4 @@
 *.pyc
 colournaming/colournaming/*.pyc
 colournaming/namebytyping/*.pyc
+colournaming/namebytyping/migrations/*.pyc
