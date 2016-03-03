@@ -18,9 +18,14 @@ class Patch(models.Model):
 class User(models.Model):
     FEMALE = 0
     MALE = 1
+    NO_SAY = -1
+    WILLING_TO_SPEAK = 1
+    UNWILLING_TO_SPEAK = 0
     age = models.IntegerField(default=0)
-    gender = models.IntegerField(default=0, choices=((FEMALE, 'female'), (MALE, 'male')))
+    gender = models.IntegerField(default=0, choices=((FEMALE, 'female'), (MALE, 'male'), (NO_SAY, 'no_say')))
     nationality = models.CharField(max_length=200)
+    willing_to_speak = models.IntegerField(default=0, choices=((WILLING_TO_SPEAK, 'willing_to_speak'), (UNWILLING_TO_SPEAK, 'unwilling_to_speak')))
+    test_type = models.CharField(max_length=200, default="n/a")
 
 class Response(models.Model):
 
@@ -40,4 +45,5 @@ class Time(models.Model):
         string = "Total time taken for 100 images: " + str(self.time_elapsed)
         return string
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     time_elapsed = models.IntegerField(default = -1)

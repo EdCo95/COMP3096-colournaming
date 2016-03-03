@@ -1,29 +1,40 @@
 {% load staticfiles %}
-
+<html>
+<head>
 <link rel="stylesheet" type="text/css" href="{% static 'namebytyping/style-instructions.css' %}" />
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script src="../../static/namebytyping/survey_functions.js"></script>
-
+<script src="../../static/namebytyping/webkit-test.js"></script>
+</head>
+<body>
 <div class="main-container">
-    <div class="title"><h1>Preliminary Questions</h1></div>
+    <div class="title">
+      <h1>Preliminary Questions</h1>
+    </div>
     <div class="instructions">
 
       <form action="{% url 'namebytyping:begin' %}" method="post">
         {% csrf_token %}
 
-        <h3 id="gender-header">What is your gender?</h3>
+        <h3 id="gender-header">What is your gender?*</h3>
         <input type="radio" id="gender-male" name="gender" value="Male"> Male <br>
-        <input type="radio" id="gender-female" name="gender" value="female"> Female <br>
+        <input type="radio" id="gender-female" name="gender" value="Female"> Female <br>
         <input type="radio" id="gender-nosay" name="gender" value="no-say"> I'd Prefer Not to Say <br>
 
-        <h3>What year where you born in?</h3>
+        <h3>What year were you born in?</h3>
         <input type="text" name="age" id="age-input">
 
         <h3>What is your nationality?</h3>
         <input type="text" name="nationality" id="nationality-input">
 
+        <h4>Are you happy to speak the colour names rather than typing them if your computer allows?*</h4>
+        <input type="radio" name="speech-consent" value="Yes"> Yes <br>
+        <input type="radio" name="speech-consent" value="No"> No <br>
+
         <input type="text" id="speech-recog-test" name="has-webkit" style="display:none;">
+
+        <p id="end-note"> * = indicates compulsory question </p>
 
         <div id="begin-button" class="button" name="begin">
           <h4>Begin</h4>
@@ -36,3 +47,5 @@
   </div>
 
 </div>
+</body>
+</html>

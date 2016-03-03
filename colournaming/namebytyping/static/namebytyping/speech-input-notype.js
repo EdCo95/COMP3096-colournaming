@@ -54,7 +54,15 @@
 			recognizing = false;
 			clearTimeout(timeout);
 			micBtn.classList.remove('listening');
-			if (oldPlaceholder !== null) inputEl.placeholder = oldPlaceholder;
+			if (oldPlaceholder !== null) {
+				$("#listen-text").html("Listening Stopped");
+				$("#restart-recognition").css('display', 'flex');
+				$("#restart-recognition").click(function() {
+					$("#listen-text").html("Listening...");
+					$("#restart-recognition").css('display', 'none');
+					recognition.start();
+				});
+			}
 		};
 
 		recognition.onresult = function(event) {
@@ -66,6 +74,7 @@
 			}
 			finalTranscript = capitalize(finalTranscript);
 			$("#listen-text").html(finalTranscript);
+			$("#textbox").val(finalTranscript);
 			restartTimer();
 
 			setTimeout(function() {
@@ -82,5 +91,6 @@
 			inputEl.value = finalTranscript = '';
 			recognition.start();
 		}, false);
+
 	});
 })();
