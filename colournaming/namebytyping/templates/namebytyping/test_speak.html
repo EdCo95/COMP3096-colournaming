@@ -1,0 +1,45 @@
+<h1>{{ session_key }}</h1>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'namebytyping/style.css' %}" />
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="{% static 'namebytyping/speech-input.css' %}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="../../static/namebytyping/functions_speakonly.js"></script>
+
+
+<div class = "image">
+  <img id="shown-image" src="../../static/namebytyping/images/{{ image_number }}.jpg"/>
+  <div class="overlay" id="overlay">
+    <div class="shape" style="top:{{ circley }}; left:{{ circlex }};"></div>
+  </div>
+</div>
+
+<form action="{% url 'namebytyping:submit_speak' %}" method="post" id="input-form">
+      {% csrf_token %}
+
+      <div class="si-wrapper" id="textbox-div">
+        <h3 id="listen-text">Listening...</h3>
+        <input type="text" class="si-input" name="colourname" id="textbox" style="display:none">
+        <button class="si-btn" id="speech-button">
+            speech input
+            <span class="si-mic"></span>
+            <span class="si-holder"></span>
+        </button>
+      </div>
+    <script src="../../static/namebytyping/speech-input-notype.js"></script>
+
+      <div id="skip-button" class="button" name="colourname">
+        <h4>I Can't See The Circle</h4>
+      </div>
+
+      <div class="button" id="help-button">
+        <h4>Speech Isn't Working</h4>
+      </div>
+
+      <div id="hidden-textbox">
+        <input type="text" name="imagenumber" id="hidden-textbox" value="{{ image_number }}">
+      </div>
+
+</form>

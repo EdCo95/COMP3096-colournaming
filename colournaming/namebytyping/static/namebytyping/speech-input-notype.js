@@ -65,8 +65,9 @@
 				}
 			}
 			finalTranscript = capitalize(finalTranscript);
-			inputEl.value = finalTranscript;
+			$("#listen-text").html(finalTranscript);
 			restartTimer();
+
 			setTimeout(function() {
 				document.getElementById('input-form').submit();
 			}, 500);

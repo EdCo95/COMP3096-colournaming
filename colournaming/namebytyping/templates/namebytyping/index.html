@@ -1,24 +1,27 @@
 {% load staticfiles %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'namebytyping/style-index.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'namebytyping/style-instructions.css' %}" />
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 
 <div class="main-container">
     <div class="title"><h1>Colour Naming</h1></div>
     <div class="instructions">
-      <p>This test will run for 3 minutes. You will be shown one image at a time
-         with an area circled. Your goal is to type the colour contained
-         in the circle in each image. You should enter the first colour that comes
-         to your mind but try to be as descriptive as possible, for example
-         “lavender” instead of “purple” or “dark orange” instead of “orange”.
-         Once the timer expires, you will be allowed to finish your answer for the current
-         image.
+      <p>
+         This test will run for approximately 5 minutes. You will be shown a
+         series of images, each of which has an area circled. Your task is to
+         name the colour in that circle. Try to be as descriptive as possible,
+         for example saying “lavender” instead of “purple” or “dark orange”
+         instead of “orange”. If your browser is Google Chrome or Firefox you
+         <strong>may</strong> (we will notify you if you can) be able to use
+         your computer's microphone to name the colours by speaking them rather
+         than having to type them. Before the test starts there are three
+         questions to answer. All of your data is completely anonymous.
       </p>
     </div>
-  <form action="{% url 'namebytyping:begin' %}" method="post">
+  <form action="{% url 'namebytyping:next' %}" method="post">
     {% csrf_token %}
-    <div id="begin-button" class="button" onclick="this.parentNode.submit()" name="begin">
-      <h4>Begin</h4>
+    <div id="begin-button" class="button" onclick="this.parentNode.submit()" name="continue">
+      <h4>Continue</h4>
     </div>
   </form>
 

@@ -76,9 +76,14 @@
   color:white;
 }
 
-h4 {
+h3, h4 {
   font-family: 'Montserrat', serif;
   font-size: 18px;
+}
+
+h3 {
+  color: #333333;
+  font-style: italic;
 }
 
 .button:hover {
