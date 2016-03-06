@@ -1,0 +1,43 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'namebytyping/style-instructions.css' %}" />
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+<div class="main-container">
+    <div class="title"><h1>Speak/Type Test</h1></div>
+    <div class="instructions">
+      <p>
+         You have been allocated the <strong><i>Speaking and Typing Test</i></strong>.
+         In this test, you may either speak the name of the colour in the circle,
+         or type the name in the textbox. Your computer will automatically listen
+         for speech, once you have given it permission to use the microphone.
+         If you decide to type a colour name, simply press enter to submit the answer.
+         If you speak the name, then the answer will submit automatically. <br><br>
+
+         Remember to speak clearly, but <strong><i>do not worry if
+         the computer doesn't understand you correctly</i></strong>, for example it
+         may think you said "dog" when you actually said "dark". If this happens,
+         ignore it. Wrong interpretations are still valuable data about the
+         experiment's accuracy!
+
+         <br><br>If you cannot see the circle, there is a button underneath the image
+         which you can click to skip the image. Finally, after 60 seconds with
+         no answer, the speech recognition will turn off. If this happens, type
+         the name of the colour for the image you're currently on, and as soon as
+         you press enter and move to the next image, the speech recognition will
+         restart. If the speech recognition is not working at all - i.e. 10 seconds
+         after you say something no words have appeared in the textbox - then
+         simply type the answers and ignore the speech recognition.
+      </p>
+    </div>
+  <form action="{% url 'namebytyping:start_speak_type' %}" method="post">
+    {% csrf_token %}
+    <div id="begin-button" class="button" onclick="this.parentNode.submit()" name="continue">
+      <h4>Start</h4>
+    </div>
+  </form>
+
+  <div class="spacing">
+  </div>
+
+</div>

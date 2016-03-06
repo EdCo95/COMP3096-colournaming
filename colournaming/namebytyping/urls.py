@@ -17,4 +17,10 @@ urlpatterns = [
     url(r'^rerun/$', views.rerun, name='rerun'),
     url(r'^survey/$', views.survey, name='survey'),
     url(r'^next/$', views.next, name='next'),
+    url(r'^test_speak_info/$', views.test_speak_info, name='test_speak_info'),
+    url(r'^test_type_info/$', views.test_type_info, name='test_type_info'),
+    url(r'^test_speak_type_info/$', views.test_speak_type_info, name='test_speak_type_info'),
+    url(r'^start_speak/$', views.start_speak, name='start_speak'),
+    url(r'^start_type/$', views.start_type, name='start_type'),
+    url(r'^start_speak_type/$', views.start_speak_type, name='start_speak_type'),
 ]

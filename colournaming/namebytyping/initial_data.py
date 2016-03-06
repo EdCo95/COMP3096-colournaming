@@ -12,6 +12,8 @@ except:
 
 cur = conn.cursor()
 
+coords = open("patch_coords.txt", "r")
+
 for i in range(1, 41):
     current_path = path.join(base_path, '{}.jpg'.format(i))
     I = Image.open(current_path)
@@ -22,9 +24,12 @@ for i in range(1, 41):
     cur.execute("""INSERT INTO namebytyping_image VALUES ({}, '', '{}', {}, {})""".format(i, current_path, width, height))
 
     patch_id = i
+    patch_line = coords.readline()
+    coords_list = patch_line.split()
+    position_x = coords_list[2]
+    position_y = coords_list[4]
+
     radius = 20
-    position_x = random.randint(radius, width - radius)
-    position_y = random.randint(radius, height - radius)
     image_id = i
     cur.execute("""INSERT INTO namebytyping_patch VALUES ({}, {}, {}, {}, {})""".format(patch_id, radius, position_x, position_y, image_id))
 

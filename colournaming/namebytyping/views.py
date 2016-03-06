@@ -38,8 +38,8 @@ def test_type(request):
             patch = Patch.objects.get(id=image_number)
             image = patch.image
             already_seen.append(image_number)
-            circlex = random.randint(patch.radius, image.width - patch.radius);
-            circley = random.randint(patch.radius, image.height - patch.radius);
+            circlex = patch.position_x;
+            circley = patch.position_y;
 
             request.session['already_seen'] = already_seen
             count = request.session.get('count')
@@ -72,8 +72,8 @@ def test_speak(request):
             patch = Patch.objects.get(id=image_number)
             image = patch.image
             already_seen.append(image_number)
-            circlex = random.randint(patch.radius, image.width - patch.radius);
-            circley = random.randint(patch.radius, image.height - patch.radius);
+            circlex = patch.position_x;
+            circley = patch.position_y;
 
             request.session['already_seen'] = already_seen
             count = request.session.get('count')
@@ -106,8 +106,8 @@ def test_speak_type(request):
             patch = Patch.objects.get(id=image_number)
             image = patch.image
             already_seen.append(image_number)
-            circlex = random.randint(patch.radius, image.width - patch.radius);
-            circley = random.randint(patch.radius, image.height - patch.radius);
+            circlex = patch.position_x;
+            circley = patch.position_y;
 
             request.session['already_seen'] = already_seen
             count = request.session.get('count')
@@ -224,16 +224,37 @@ def begin(request):
         new_user.save()
 
     request.session['user'] = new_user.id
-    request.session['start_time'] = time.time()
     request.session['in_progress'] = "True"
     request.session['survey_complete'] = "True"
 
     if test_type == "type":
-        return HttpResponseRedirect(reverse('namebytyping:test_type'))
+        return HttpResponseRedirect(reverse('namebytyping:test_type_info'))
     elif test_type == "speak":
-        return HttpResponseRedirect(reverse('namebytyping:test_speak'))
+        return HttpResponseRedirect(reverse('namebytyping:test_speak_info'))
     elif test_type == "speak_type":
-        return HttpResponseRedirect(reverse('namebytyping:test_speak_type'))
+        return HttpResponseRedirect(reverse('namebytyping:test_speak_type_info'))
+
+def test_type_info(request):
+    return render(request, 'namebytyping/test_type_info.html')
+
+def test_speak_info(request):
+    return render(request, 'namebytyping/test_speak_info.html')
+
+def test_speak_type_info(request):
+    return render(request, 'namebytyping/test_speak_type_info.html')
+
+def start_type(request):
+    request.session['start_time'] = time.time()
+    return HttpResponseRedirect(reverse('namebytyping:test_type'))
+
+def start_speak(request):
+    request.session['start_time'] = time.time()
+    return HttpResponseRedirect(reverse('namebytyping:test_speak'))
+
+def start_speak_type(request):
+    request.session['start_time'] = time.time()
+    return HttpResponseRedirect(reverse('namebytyping:test_speak_type'))
+
 
 def next(request):
     return HttpResponseRedirect(reverse('namebytyping:survey'))
