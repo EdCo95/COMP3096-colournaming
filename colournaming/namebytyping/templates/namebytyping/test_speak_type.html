@@ -10,10 +10,7 @@
 
 
 <div class = "image">
-  <img id="shown-image" src="../../static/namebytyping/images/{{ image_number }}.jpg"/>
-  <div class="overlay" id="overlay">
-    <div class="shape" style="top:{{ circley }}; left:{{ circlex }};"></div>
-  </div>
+  <img id="shown-image" src="../../static/namebytyping/images/circled/{{ image_number }}.png"/>
 </div>
 
 <form action="{% url 'namebytyping:submit_speak_type' %}" method="post" id="input-form">

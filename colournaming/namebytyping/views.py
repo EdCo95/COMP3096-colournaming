@@ -38,18 +38,12 @@ def test_type(request):
             patch = Patch.objects.get(id=image_number)
             image = patch.image
             already_seen.append(image_number)
-            circlex = patch.position_x;
-            circley = patch.position_y;
-
-            print "circlex " + str(circlex) + " circley " + str(circley)
 
             request.session['already_seen'] = already_seen
             count = request.session.get('count')
             count += 1
             request.session['count'] = count
             return render(request, 'namebytyping/test_type.html', {'image_number' : image_number,
-                                                                   'circlex' : circlex,
-                                                                   'circley' : circley,
                                                                    'count' : count })
 
     request.session['already_seen'] = []
@@ -74,16 +68,12 @@ def test_speak(request):
             patch = Patch.objects.get(id=image_number)
             image = patch.image
             already_seen.append(image_number)
-            circlex = patch.position_x;
-            circley = patch.position_y;
 
             request.session['already_seen'] = already_seen
             count = request.session.get('count')
             count += 1
             request.session['count'] = count
             return render(request, 'namebytyping/test_speak.html', {'image_number' : image_number,
-                                                              'circlex' : circlex,
-                                                              'circley' : circley,
                                                               'count' : count })
 
     request.session['already_seen'] = []
@@ -108,16 +98,12 @@ def test_speak_type(request):
             patch = Patch.objects.get(id=image_number)
             image = patch.image
             already_seen.append(image_number)
-            circlex = patch.position_x;
-            circley = patch.position_y;
 
             request.session['already_seen'] = already_seen
             count = request.session.get('count')
             count += 1
             request.session['count'] = count
             return render(request, 'namebytyping/test_speak_type.html', {'image_number' : image_number,
-                                                              'circlex' : circlex,
-                                                              'circley' : circley,
                                                               'count' : count })
 
     request.session['already_seen'] = []

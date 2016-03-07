@@ -1,9 +1,4 @@
 $(window).load(function() {
-  var img = document.getElementById('shown-image');
-  var width = img.clientWidth;
-  var height = img.clientHeight;
-  $('#overlay').css('height', height);
-  $('#overlay').css('width', width);
 
   $("#help-button").click(function() {
     $("#textbox").val("SPEECH-BROKEN");
