@@ -1,7 +1,7 @@
 $(window).load(function() {
   $("#help-button").click(function() {
     $("#textbox").val("Circle Invisible");
-    this.parentNode.submit();
+    document.getElementById('input-form').submit();
   });
 
   var text_input = document.getElementById ('textbox');

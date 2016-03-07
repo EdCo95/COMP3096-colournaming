@@ -2,12 +2,14 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'namebytyping/style-instructions.css' %}" />
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
 <div class="main-container">
     <div class="title"><h1>Speak/Type Test</h1></div>
     <div class="instructions">
       <p>
-         You have been allocated the <strong><i>Speaking and Typing Test</i></strong>.
+         If you are not currently in a quiet, suitable place or feel uncomfortable using voice recognition, please scroll to the bottom of this text and click the "I am unable to use speech recognition" button. You will then be taken to a typing-only test. <br><br>
+         This is a <strong><i>Speaking and Typing Test</i></strong>.
          In this test, you may either speak the name of the colour in the circle,
          or type the name in the textbox. Your computer will automatically listen
          for speech, once you have given it permission to use the microphone.
@@ -22,19 +24,35 @@
 
          <br><br>If you cannot see the circle, there is a button underneath the image
          which you can click to skip the image. Finally, after 60 seconds with
-         no answer, the speech recognition will turn off. If this happens, type
-         the name of the colour for the image you're currently on, and as soon as
-         you press enter and move to the next image, the speech recognition will
-         restart. If the speech recognition is not working at all - i.e. 10 seconds
+         no answer, the speech recognition will turn off. If this happens, a button will appear which
+         you can click to restart it. If the speech recognition is not working at all - i.e. 10 seconds
          after you say something no words have appeared in the textbox - then
          simply type the answers and ignore the speech recognition.
+
+         <br><br>Click the "Practice" button to continue.
+         You will be taken to a practice question before starting the real test
+         so that you can try out the speech recognition.
       </p>
     </div>
-  <form action="{% url 'namebytyping:start_speak_type' %}" method="post">
+  <form action="{% url 'namebytyping:start_speak_type' %}" method="post" id="input-form">
     {% csrf_token %}
     <div id="begin-button" class="button" onclick="this.parentNode.submit()" name="continue">
-      <h4>Start</h4>
+      <h4>Practice</h4>
     </div>
+
+    <input type="text" name="user-unwilling" id="user-unwilling" style="display:none;">
+
+    <div class="button" id="unable-to-speak">
+      <h4>I Am Not Able to Use Speech Recognition</h4>
+    </div>
+
+    <script type="text/javascript">
+      $("#unable-to-speak").click(function() {
+        $("#user-unwilling").val("UNWILLING");
+        document.getElementById('input-form').submit();
+      });
+    </script>
+
   </form>
 
   <div class="spacing">

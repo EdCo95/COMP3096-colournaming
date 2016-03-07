@@ -6,7 +6,7 @@
 <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="{% static 'namebytyping/speech-input.css' %}" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script src="../../static/namebytyping/functions.js"></script>
+<script src="../../static/namebytyping/functions_speaktype.js"></script>
 
 
 <div class = "image">
@@ -17,21 +17,34 @@
       {% csrf_token %}
 
       <div class="si-wrapper" id="textbox-div">
-        <input type="text" class="si-input" name="colourname" id="textbox" onKeyPress="return submitenter(this,event)" placeholder="Listening Stop">
+        <input type="text" class="si-input" name="colourname" id="textbox" onKeyPress="return submitenter(this,event)" placeholder="Listening Stopped">
         <button class="si-btn" id="speech-button">
             speech input
-            <span class="si-mic"></span>
-            <span class="si-holder"></span>
         </button>
       </div>
-    <script src="../../static/namebytyping/speech-input.js"></script>
-      <div id="submitbutton" class="button" onclick="this.parentNode.submit()" name="colourname">
-        <h4>Submit</h4>
-      </div>
+      <script src="../../static/namebytyping/speech-input.js"></script>
 
-      <div class="button" id="help-button">
-        <h4>I Can't See The Circle</h4>
+    <div class="buttons-and-mic-container">
+      <div class="buttons-container">
+
+        <div class="button" id="restart-recognition" style="display:none">
+          <h4>Restart Speech Recognition</h4>
+        </div>
+
+        <div id="submitbutton" class="button" onclick="document.getElementById('input-form').submit();" name="colourname">
+          <h4>Submit</h4>
+        </div>
+
+        <div class="button" id="help-button">
+          <h4>I Can't See The Circle</h4>
+        </div>
+
       </div>
+      <div class="mic-container" id="mic-container-id">
+        <img id="listening-mic" src="../../static/namebytyping/images/mic-animate.gif" style="display:none;"/>
+        <img id="stopped-mic" src="../../static/namebytyping/images/mic-slash.gif"/>
+      </div>
+    </div>
 
       <div id="hidden-textbox">
         <input type="text" name="imagenumber" id="hidden-textbox" value="{{ image_number }}">

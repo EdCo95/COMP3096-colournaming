@@ -1,14 +1,14 @@
 $(window).load(function() {
   $('#speech-button').trigger('click');
 
+  $("#help-button").click(function() {
+    $("#textbox").val("Circle Invisible");
+    document.getElementById('input-form').submit();
+  });
+
   var text_input = document.getElementById ('textbox');
   text_input.focus ();
   text_input.select ();
-
-  $("#unable-to-speak").click(function() {
-    $("#happy-to-speak-box").val("UNWILLING")
-    document.getElementById('input-form').submit();
-  });
 
 });
 

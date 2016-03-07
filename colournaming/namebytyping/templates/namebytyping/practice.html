@@ -11,28 +11,45 @@
   <img id="shown-image" src="../../static/namebytyping/images/circled/{{ image_number }}.png"/>
 </div>
 
+<div id="interim-results">
+  <span id="interim_span" class="interim"><h4 id="spoken-text"><i>Listening...</i></h4></span>
+</div>
+
 <form action="{% url 'namebytyping:practice_done' %}" method="post" id="input-form">
       {% csrf_token %}
 
-      <div class="si-wrapper" id="textbox-div">
-        <input type="text" class="si-input" name="colourname" id="textbox" onKeyPress="return submitenter(this,event)" placeholder="What's up?">
-        <button class="si-btn" id="speech-button">
-            speech input
-            <span class="si-mic"></span>
-            <span class="si-holder"></span>
-        </button>
-      </div>
-
       <input type="text" id="happy-to-speak-box" name="happy-to-speak" style="display:none;">
 
-    <script src="../../static/namebytyping/speech-input-practice.js"></script>
-      <div id="submitbutton" class="button" onclick="this.parentNode.submit()" name="colourname">
-        <h4>Submit</h4>
-      </div>
+    <div class="buttons-and-mic-container">
+      <div class="buttons-container">
 
-      <div class="button" id="unable-to-speak">
-        <h4>I Am Not Able to Use Speech Recognition</h4>
+        <div class="button" id="restart-recognition" style="display:none">
+          <h4>Restart Speech Recognition</h4>
+        </div>
+
+        <div id="submitbutton" class="button" onclick="document.getElementById('input-form').submit();" name="colourname">
+          <h4>Begin Experiment</h4>
+        </div>
+
+        <div class="button" id="unable-to-speak">
+          <h4>I Am Not Able to Use Speech Recognition</h4>
+        </div>
+
       </div>
+      <div class="mic-container">
+        <img id="listening-mic" src="../../static/namebytyping/images/mic-animate.gif" style="display:none;"/>
+        <img id="stopped-mic" src="../../static/namebytyping/images/mic-slash.gif"/>
+      </div>
+    </div>
+
+    <div class="si-wrapper" id="textbox-div" style="display:none">
+      <input type="text" class="si-input" name="colourname" id="textbox" onKeyPress="return submitenter(this,event)" placeholder="Listening Stopped" style="display:none;">
+      <button class="si-btn" id="speech-button">
+          speech input
+      </button>
+    </div>
+
+    <script src="../../static/namebytyping/speech-input-practice.js"></script>
 
       <div id="hidden-textbox">
         <input type="text" name="imagenumber" id="hidden-textbox" value="{{ image_number }}">
