@@ -31,9 +31,16 @@ for i in range(1, 41):
     position_y = coords_list[4]
     radius = 20
 
-    draw.ellipse((int(position_x) - radius, int(position_y) - radius, int(position_x) + radius, int(position_y) + radius))
-    filename = "static/namebytyping/images/new/" + str(i) + ".png"
-    I.save(filename, "png")
+    colour = coords_list[5]
+
+    filename = "static/namebytyping/images/circled/" + str(i) + ".png"
+
+    if (colour == "white"):
+        draw.ellipse((int(position_x) - radius, int(position_y) - radius, int(position_x) + radius, int(position_y) + radius))
+        I.save(filename, "png")
+    elif (colour == "black"):
+        draw.ellipse((int(position_x) - radius, int(position_y) - radius, int(position_x) + radius, int(position_y) + radius), outline=(0, 0, 0))
+        I.save(filename, "png")
 
     image_id = i
     cur.execute("""INSERT INTO namebytyping_patch VALUES ({}, {}, {}, {}, {})""".format(patch_id, radius, position_x, position_y, image_id))
