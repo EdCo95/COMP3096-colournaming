@@ -41,6 +41,8 @@ def test_type(request):
             circlex = patch.position_x;
             circley = patch.position_y;
 
+            print "circlex " + str(circlex) + " circley " + str(circley)
+
             request.session['already_seen'] = already_seen
             count = request.session.get('count')
             count += 1
