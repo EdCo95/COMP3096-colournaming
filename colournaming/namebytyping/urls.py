@@ -23,4 +23,6 @@ urlpatterns = [
     url(r'^start_speak/$', views.start_speak, name='start_speak'),
     url(r'^start_type/$', views.start_type, name='start_type'),
     url(r'^start_speak_type/$', views.start_speak_type, name='start_speak_type'),
+    url(r'^practice/$', views.practice, name='practice'),
+    url(r'^practice_done/$', views.practice_done, name='practice_done'),
 ]

@@ -8,6 +8,12 @@ $(window).load(function() {
   var text_input = document.getElementById ('textbox');
   text_input.focus ();
   text_input.select ();
+
+  $("#unable-to-speak").click(function() {
+    $("#happy-to-speak-box").val("UNWILLING")
+    this.parentNode.submit();
+  });
+
 });
 
 window.onload = function(){

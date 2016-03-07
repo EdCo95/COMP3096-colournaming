@@ -181,10 +181,9 @@ def begin(request):
         age = -1;
 
     has_speech_recog = request.POST['has-webkit']
-    speech_consent = request.POST['speech-consent']
     test_type = "type"
 
-    if has_speech_recog == "True" and speech_consent == "Yes":
+    if has_speech_recog == "True":
         lottery = ["speak_type",
                    "speak_type",
                    "speak",
@@ -192,23 +191,14 @@ def begin(request):
                    "type"]
         test_type = lottery[random.randint(0, 4)]
 
-    if gender == "Male" and speech_consent == "Yes":
+    if gender == "Male":
         new_user = User(age=age, gender=User.MALE, nationality=nationality, willing_to_speak=User.WILLING_TO_SPEAK, test_type=test_type)
         new_user.save()
-    elif gender == "Male" and speech_consent == "No":
-        new_user = User(age=age, gender=User.MALE, nationality=nationality, willing_to_speak=User.UNWILLING_TO_SPEAK, test_type=test_type)
-        new_user.save()
-    elif gender == "Female" and speech_consent == "Yes":
+    elif gender == "Female":
         new_user = User(age=age, gender=User.FEMALE, nationality=nationality, willing_to_speak=User.WILLING_TO_SPEAK, test_type=test_type)
         new_user.save()
-    elif gender == "Female" and speech_consent == "No":
-        new_user = User(age=age, gender=User.FEMALE, nationality=nationality, willing_to_speak=User.UNWILLING_TO_SPEAK, test_type=test_type)
-        new_user.save()
-    elif gender == "no-say" and speech_consent == "Yes":
+    elif gender == "no-say":
         new_user = User(age=age, gender=User.NO_SAY, nationality=nationality, willing_to_speak=User.WILLING_TO_SPEAK, test_type=test_type)
-        new_user.save()
-    elif gender == "no-say" and speech_consent == "No":
-        new_user = User(age=age, gender=User.NO_SAY, nationality=nationality, willing_to_speak=User.UNWILLING_TO_SPEAK, test_type=test_type)
         new_user.save()
 
     request.session['user'] = new_user.id
@@ -216,10 +206,35 @@ def begin(request):
     request.session['survey_complete'] = "True"
 
     if test_type == "type":
+        user = User.objects.get(id=request.session.get('user'))
+        user.willing_to_speak = User.UNWILLING_TO_SPEAK
+        user.save()
         return HttpResponseRedirect(reverse('namebytyping:test_type_info'))
     elif test_type == "speak":
-        return HttpResponseRedirect(reverse('namebytyping:test_speak_info'))
+        return HttpResponseRedirect(reverse('namebytyping:practice'))
     elif test_type == "speak_type":
+        return HttpResponseRedirect(reverse('namebytyping:practice'))
+
+def practice(request):
+    image_number = 0
+    return render(request, 'namebytyping/practice.html', {'image_number' : image_number })
+
+def practice_done(request):
+    willing = request.POST['happy-to-speak']
+
+    if (willing == "UNWILLING"):
+        user = User.objects.get(id=request.session.get('user'))
+        user.willing_to_speak = User.UNWILLING_TO_SPEAK
+        user.test_type = "type"
+        user.save()
+        return HttpResponseRedirect(reverse('namebytyping:test_type_info'))
+
+    user = User.objects.get(id=request.session.get('user'))
+    test_style = user.test_type
+
+    if test_style == "speak":
+        return HttpResponseRedirect(reverse('namebytyping:test_speak_info'))
+    elif test_style == "speak_type":
         return HttpResponseRedirect(reverse('namebytyping:test_speak_type_info'))
 
 def test_type_info(request):
