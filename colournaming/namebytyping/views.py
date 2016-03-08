@@ -167,11 +167,11 @@ def begin(request):
         user = User.objects.get(id=request.session.get('user'))
         t_type = user.test_type
         if t_type == "type":
-            return HttpResponseRedirect(reverse('namebytyping:test_type'))
+            return HttpResponseRedirect(reverse('namebytyping:test_type_info'))
         elif t_type == "speak":
-            return HttpResponseRedirect(reverse('namebytyping:test_speak'))
+            return HttpResponseRedirect(reverse('namebytyping:test_speak_info'))
         elif t_type == "speak_type":
-            return HttpResponseRedirect(reverse('namebytyping:test_speak_type'))
+            return HttpResponseRedirect(reverse('namebytyping:test_speak_type_info'))
 
     try:
         birth_year_int = int(birth_year)
@@ -185,10 +185,14 @@ def begin(request):
     if has_speech_recog == "True":
         lottery = ["speak_type",
                    "speak_type",
+                   "speak_type",
+                   "speak_type",
+                   "speak",
+                   "speak",
                    "speak",
                    "speak",
                    "type"]
-        test_type = lottery[random.randint(0, 4)]
+        test_type = lottery[random.randint(0, 8)]
 
     if gender == "Male":
         new_user = User(age=age, gender=User.MALE, nationality=nationality, willing_to_speak=User.WILLING_TO_SPEAK, test_type=test_type)
@@ -206,7 +210,7 @@ def begin(request):
 
     if test_type == "type":
         user = User.objects.get(id=request.session.get('user'))
-        user.willing_to_speak = User.UNWILLING_TO_SPEAK
+        user.willing_to_speak = User.NOT_APPLICABLE
         user.save()
         return HttpResponseRedirect(reverse('namebytyping:test_type_info'))
     elif test_type == "speak":
@@ -287,5 +291,12 @@ def complete(request):
     request.session['in_progress'] = "False"
     return render(request, 'namebytyping/complete.html')
 
-def rerun(request):
-    return HttpResponseRedirect(reverse('namebytyping:index'))
+def end_survey(request):
+    how_many_more = request.POST['how-many-more']
+    user = User.objects.get(id=request.session.get('user'))
+    user.extra_questions = how_many_more
+    user.save()
+    return HttpResponseRedirect(reverse('namebytyping:thank_you'))
+
+def thank_you(request):
+    return render(request, 'namebytyping/thank_you.html')

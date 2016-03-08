@@ -2,21 +2,43 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'namebytyping/style-instructions.css' %}" />
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
 <div class="main-container">
-    <div class="title"><h1>Thank You!</h1></div>
+    <div class="title"><h1>One Last Question...</h1></div>
     <div class="instructions">
       <p>
-         The test is now complete, thank you for your time. Please feel free to
-         take the test again by clicking the button below.
+         The test is now complete, thank you for your time. Would you be willing
+         to continue the test with more photos? If so, how many more photos would you
+         be willing to look at as part of this test?
       </p>
-    </div>
-  <form action="{% url 'namebytyping:rerun' %}" method="post">
+  <form action="{% url 'namebytyping:end_survey' %}" method="post" id="input-form">
     {% csrf_token %}
-    <div id="rerun-button" class="button" onclick="this.parentNode.submit()" name="rerun">
-      <h4>Again!</h4>
+
+    <input type="radio" name="how-many-more" value="0"> 0 <br>
+    <input type="radio" name="how-many-more" value="10"> 10 <br>
+    <input type="radio" name="how-many-more" value="20"> 20 <br>
+    <input type="radio" name="how-many-more" value="40"> 40 <br>
+    <input type="radio" name="how-many-more" value="60"> 60 <br>
+    <input type="radio" name="how-many-more" value="80om"> 80 or more <br>
+
+    <div id="rerun-button" class="button" name="rerun">
+      <h4>Submit</h4>
     </div>
+
+    <script type="text/javascript">
+      $("#rerun-button").click(function() {
+        var n_checked = $("input:checked").length;
+        if (n_checked > 0) {
+          document.getElementById('input-form').submit();
+        } else {
+          alert("Please select an option");
+        }
+      });
+    </script>
+
   </form>
+  </div>
 
   <div class="spacing">
   </div>
