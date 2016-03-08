@@ -139,6 +139,7 @@ def submit_speak(request):
     if colourname == "SPEECH-BROKEN":
         user = User.objects.get(id=request.session.get('user'))
         user.test_type = "type"
+        user.willing_to_speak = User.NOT_APPLICABLE
         user.save()
         request.session['already_seen'] = []
         return HttpResponseRedirect(reverse('namebytyping:test_type_info'))

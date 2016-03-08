@@ -118,6 +118,7 @@
 
 			if (finalTranscript) {
 				$("#textbox").css("background-color", "#b2d8b2");
+				$("#submitted").val("True");
 				setTimeout(function() {
 					document.getElementById('input-form').submit();
 				}, 500);
