@@ -6,7 +6,7 @@ import random
 base_path = path.join('static', 'namebytyping', 'images')
 
 try:
-    conn = psycopg2.connect("dbname='colournaming' user='{}' host='localhost' password='{}'".format(environ['DJANGO_USER'], environ['DJANGO_PASSWORD']))
+    conn = psycopg2.connect("dbname='colournaming' user='{}' host='' password='{}'".format(environ['DJANGO_USER'], environ['DJANGO_PASSWORD']))
 except:
     print "I am unable to connect to the database"
 

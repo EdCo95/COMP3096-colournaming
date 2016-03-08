@@ -28,7 +28,7 @@ def test_type(request):
         return HttpResponseRedirect(reverse('namebytyping:complete'))
 
     while True:
-        image_number = random.choice(Patch.objects.values_list('id', flat=True))
+        #image_number = random.choice(Patch.objects.values_list('id', flat=True))
 
         image_number = random.randint(1, number_of_images)
 
@@ -36,8 +36,8 @@ def test_type(request):
             break;
 
         if image_number not in already_seen:
-            patch = Patch.objects.get(id=image_number)
-            image = patch.image
+            #patch = Patch.objects.get(id=image_number)
+            #image = patch.image
             already_seen.append(image_number)
 
             request.session['already_seen'] = already_seen
@@ -58,7 +58,7 @@ def test_speak(request):
         return HttpResponseRedirect(reverse('namebytyping:complete'))
 
     while True:
-        image_number = random.choice(Patch.objects.values_list('id', flat=True))
+        #image_number = random.choice(Patch.objects.values_list('id', flat=True))
 
         image_number = random.randint(1, number_of_images)
 
@@ -66,8 +66,8 @@ def test_speak(request):
             break;
 
         if image_number not in already_seen:
-            patch = Patch.objects.get(id=image_number)
-            image = patch.image
+            #patch = Patch.objects.get(id=image_number)
+            #image = patch.image
             already_seen.append(image_number)
 
             request.session['already_seen'] = already_seen
@@ -88,7 +88,7 @@ def test_speak_type(request):
         return HttpResponseRedirect(reverse('namebytyping:complete'))
 
     while True:
-        image_number = random.choice(Patch.objects.values_list('id', flat=True))
+        #image_number = random.choice(Patch.objects.values_list('id', flat=True))
 
         image_number = random.randint(1, number_of_images)
 
@@ -96,8 +96,8 @@ def test_speak_type(request):
             break;
 
         if image_number not in already_seen:
-            patch = Patch.objects.get(id=image_number)
-            image = patch.image
+            #patch = Patch.objects.get(id=image_number)
+            #image = patch.image
             already_seen.append(image_number)
 
             request.session['already_seen'] = already_seen
