@@ -15,6 +15,7 @@ def index(request):
     request.session['already_seen'] = []
     request.session['count'] = 0
     request.session['survey_complete'] = "False"
+    request.session['completed_final_survey'] = "False"
     return render(request, 'namebytyping/index.html')
 
 def survey(request):
@@ -284,6 +285,8 @@ def next(request):
     return HttpResponseRedirect(reverse('namebytyping:survey'))
 
 def complete(request):
+    if request.session.get('completed_final_survey') == "True":
+        return HttpResponseRedirect(reverse('namebytyping:thank_you'))
     time = request.session.get('end_time') - request.session.get('start_time')
     user = User.objects.get(id=request.session.get('user'))
     time_to_save = Time(user = user, time_elapsed = time)
@@ -292,10 +295,13 @@ def complete(request):
     return render(request, 'namebytyping/complete.html')
 
 def end_survey(request):
+    if request.session.get('completed_final_survey') == "True":
+        return HttpResponseRedirect(reverse('namebytyping:thank_you'))
     how_many_more = request.POST['how-many-more']
     user = User.objects.get(id=request.session.get('user'))
     user.extra_questions = how_many_more
     user.save()
+    request.session['completed_final_survey'] = "True"
     return HttpResponseRedirect(reverse('namebytyping:thank_you'))
 
 def thank_you(request):
