@@ -1,5 +1,7 @@
 {% load staticfiles %}
 
+<title>Colour Naming</title>
+
 <link rel="stylesheet" type="text/css" href="{% static 'namebytyping/style-instructions.css' %}" />
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 
@@ -7,20 +9,15 @@
     <div class="title"><h1>Colour Naming</h1></div>
     <div class="instructions">
       <p>
-         This test will run for approximately 5 minutes. You will be shown a
+         This test will take approximately 5 minutes. You will be shown a
          series of images, each of which has an area circled. Your task is to
          name the colour in that circle. Try to be as descriptive as possible,
          for example saying “lavender” instead of “purple” or “dark orange”
          instead of “orange”. If your browser is Google Chrome or Firefox you
-         <strong>may</strong> (we will notify you if you can) be able to use
+         <strong><i>may</i></strong> (we will notify you if you can) be able to use
          your computer's microphone to name the colours by speaking them rather
          than having to type them. Before the test starts there are three
-         questions to answer. All of your data is completely anonymous and no
-         voice data from speech recognition is ever recorded - only the words
-         that the computer thinks you said - nor is it possible for voice
-         recognition to be switched on without your express permission. Granting
-         permission to use voice recognition on this website will <b><i>not</i></b>
-         grant permission to any other site.
+         questions to answer. All data collected on this website is completely anonymous.
       </p>
     </div>
   <form action="{% url 'namebytyping:next' %}" method="post">
