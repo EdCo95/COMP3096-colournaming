@@ -11,6 +11,10 @@
   border-radius: 10px;
 }
 
+.image p {
+  position: absolute;
+}
+
 #shown-image {
   max-height: 100%;
   max-width: 100%;
@@ -42,14 +46,9 @@
 }
 
 #textbox-div {
-  width: 600px;
-  height: 2em;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin:auto;
-  margin-bottom: 10px;
-  margin-top: 10px;
   background-color: #333333;
   box-shadow: 0px 0px 20px #333333;
   border-radius: 10px;
@@ -97,7 +96,7 @@ h3 {
 }
 
 #textbox {
-  width: 60%;
+  width: 70%;
   height: 80%;
   font-family: 'Montserrat', serif;
   font-size: 17px;
@@ -116,11 +115,7 @@ h3 {
 }
 
 #interim-results {
-  width: 600px;
-  height: 30px;
-  margin:auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  flex:1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -130,6 +125,39 @@ h3 {
   background-color: #333333;
   box-shadow: 0px 0px 20px #333333;
   border-radius: 10px;
+}
+
+.interim-and-count-container {
+  display: flex;
+  width: 600px;
+  height: 40px;
+  margin: auto;
+  background-color: #333333;
+  box-shadow: 0px 0px 20px #333333;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.count {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: groove;
+  color: white;
+}
+
+.input-and-count-container {
+  display: flex;
+  width: 600px;
+  height: 40px;
+  margin: auto;
+  background-color: #333333;
+  box-shadow: 0px 0px 20px #333333;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .buttons-and-mic-container {
@@ -166,4 +194,8 @@ h3 {
 
 #textbox-div-speakonly {
   display: none;
+}
+
+#spoken-text {
+
 }

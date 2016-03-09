@@ -17,12 +17,20 @@
 <form action="{% url 'namebytyping:submit_speak_type' %}" method="post" id="input-form">
       {% csrf_token %}
 
-      <div class="si-wrapper" id="textbox-div">
-        <input type="text" class="si-input" name="colourname" id="textbox" onKeyPress="return submitenter(this,event)" placeholder="Listening Stopped">
-        <button class="si-btn" id="speech-button">
-            speech input
-        </button>
+      <div class="input-and-count-container">
+        <div class="si-wrapper buttons-container" id="textbox-div">
+          <input type="text" class="si-input" name="colourname" id="textbox" onKeyPress="return submitenter(this,event)" placeholder="Listening Stopped">
+          <button class="si-btn" id="speech-button">
+              speech input
+          </button>
+        </div>
+        <div class="count">
+          <h4>{{count}}/40</h4>
+        </div>
       </div>
+
+
+
       <script src="../../static/namebytyping/speech-input.js"></script>
 
     <div class="buttons-and-mic-container">

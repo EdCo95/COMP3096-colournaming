@@ -16,9 +16,15 @@
   <img id="shown-image" src="../../static/namebytyping/images/circled/{{ image_number }}.png"/>
 </div>
 
-<div id="interim-results">
-  <span id="interim_span" class="interim"><h4 id="spoken-text"><i>Listening...</i></h4></span>
+<div class="interim-and-count-container">
+  <div id="interim-results">
+    <span id="interim_span" class="interim"><h4 id="spoken-text"><i>Listening...</i></h4></span>
+  </div>
+  <div class="count">
+    <h4>{{count}}/40</h4>
+  </div>
 </div>
+
 
 <form action="{% url 'namebytyping:submit_speak' %}" method="post" id="input-form">
       {% csrf_token %}
