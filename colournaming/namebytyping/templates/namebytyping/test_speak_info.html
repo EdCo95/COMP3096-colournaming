@@ -10,7 +10,7 @@
     <div class="title"><h1>Speaking Test</h1></div>
     <div class="instructions">
       <p>
-         If you are not currently in a quiet, suitable place or feel uncomfortable using voice recognition, please scroll to the bottom of this text and click the "I am unable to use speech recognition" button. You will then be taken to a typing-only test. <br><br> This is a <strong><i>speaking only</i></strong> test. Your
+         This is a <strong><i>speaking only</i></strong> test. Your
          task is to <strong><i>speak</i></strong> the name of the colour in the circle,
          your computer will interpret your speech and will listen to you automatically, after asking your permission to use the microphone. Once you have spoken an answer, the image will automatically change.<br><br>Remember to speak clearly, but <strong><i>do not worry if
          the computer doesn't understand you correctly</i></strong>, for example it
@@ -32,19 +32,6 @@
     <div id="begin-button" class="button" onclick="this.parentNode.submit()" name="continue">
       <h4>Practice</h4>
     </div>
-
-    <input type="text" name="user-unwilling" id="user-unwilling" style="display:none;">
-
-    <div class="button" id="unable-to-speak">
-      <h4>I Am Not Able to Use Speech Recognition</h4>
-    </div>
-
-    <script type="text/javascript">
-      $("#unable-to-speak").click(function() {
-        $("#user-unwilling").val("UNWILLING");
-        document.getElementById('input-form').submit();
-      });
-    </script>
 
   </form>
 

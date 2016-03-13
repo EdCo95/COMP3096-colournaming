@@ -6,7 +6,7 @@ $(window).load(function() {
   text_input.select ();
 
   $("#unable-to-speak").click(function() {
-    $("#happy-to-speak-box").val("UNWILLING")
+    $("#able-to-speak-box").val("UNABLE")
     document.getElementById('input-form').submit();
   });
 

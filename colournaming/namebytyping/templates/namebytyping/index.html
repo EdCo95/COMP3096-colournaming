@@ -15,11 +15,8 @@
          series of images, each of which has an area circled. Your task is to
          name the colour in that circle. Try to be as descriptive as possible,
          for example saying “lavender” instead of “purple” or “dark orange”
-         instead of “orange”. If your browser is Google Chrome or Firefox you
-         <strong><i>may</i></strong> (we will notify you if you can) be able to use
-         your computer's microphone to name the colours by speaking them rather
-         than having to type them. Before the test starts there are three
-         questions to answer. All data collected on this website is completely anonymous.
+         instead of “orange”. If you are able to read this, then your computer has the ability to use voice recognition to let you answer the questions (barring problems with the microphone or computer itself). Before the test starts there are three
+         profile questions to answer. All data collected on this website is completely anonymous. Are you currently able to use and comfortable with using speech recognition to answer these questions?
       </p>
     </div>
   <form action="{% url 'namebytyping:next' %}" method="post" id="input-form">
@@ -27,8 +24,14 @@
 
     <input type="text" id="speech-recog-test" name="has-webkit" style="display:none;">
 
-    <div id="begin-button" class="button" onclick="this.parentNode.submit()" name="continue">
-      <h4>Continue</h4>
+    <input type="text" id="able-to-speak" name="able-to-speak" style="display:none;">
+
+    <div id="yes-button" class="button" name="continue">
+      <h4>Yes</h4>
+    </div>
+
+    <div id="no-button" class="button" name="continue">
+      <h4>No</h4>
     </div>
   </form>
 

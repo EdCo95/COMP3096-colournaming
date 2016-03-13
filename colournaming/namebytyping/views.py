@@ -225,11 +225,11 @@ def practice(request):
     return render(request, 'namebytyping/practice.html', {'image_number' : image_number })
 
 def practice_done(request):
-    willing = request.POST['happy-to-speak']
+    willing = request.POST['able-to-speak']
 
-    if (willing == "UNWILLING"):
+    if (willing == "UNABLE"):
         user = User.objects.get(id=request.session.get('user'))
-        user.willing_to_speak = User.UNWILLING_TO_SPEAK
+        user.willing_to_speak = User.NOT_APPLICABLE
         user.test_type = "type"
         user.save()
         return HttpResponseRedirect(reverse('namebytyping:test_type_info'))
@@ -238,8 +238,10 @@ def practice_done(request):
     test_style = user.test_type
 
     if test_style == "speak":
+        request.session['start_time'] = time.time()
         return HttpResponseRedirect(reverse('namebytyping:test_speak'))
     elif test_style == "speak_type":
+        request.session['start_time'] = time.time()
         return HttpResponseRedirect(reverse('namebytyping:test_speak_type'))
 
 def test_type_info(request):
@@ -256,42 +258,29 @@ def start_type(request):
     return HttpResponseRedirect(reverse('namebytyping:test_type'))
 
 def start_speak(request):
-    willing = request.POST['user-unwilling']
-
-    if willing == "UNWILLING":
-        user = User.objects.get(id=request.session.get('user'))
-        user.willing_to_speak = User.UNWILLING_TO_SPEAK
-        user.test_type = "type"
-        user.save()
-        return HttpResponseRedirect(reverse('namebytyping:test_type_info'))
-
-    request.session['start_time'] = time.time()
     return HttpResponseRedirect(reverse('namebytyping:practice'))
 
 def start_speak_type(request):
-    willing = request.POST['user-unwilling']
-
-    if willing == "UNWILLING":
-        user = User.objects.get(id=request.session.get('user'))
-        user.willing_to_speak = User.UNWILLING_TO_SPEAK
-        user.test_type = "type"
-        user.save()
-        return HttpResponseRedirect(reverse('namebytyping:test_type_info'))
-
-    request.session['start_time'] = time.time()
     return HttpResponseRedirect(reverse('namebytyping:practice'))
 
 
 def next(request):
     has_speech_recog = request.POST['has-webkit']
+    able_to_speak = request.POST['able-to-speak']
 
     if has_speech_recog == "False":
         return HttpResponseRedirect(reverse('namebytyping:no_speech'))
+    elif able_to_speak == "No":
+        return HttpResponseRedirect(reverse('namebytyping:not_able_speech'))
     else:
         return HttpResponseRedirect(reverse('namebytyping:survey'))
 
+
 def no_speech(request):
     return render(request, 'namebytyping/no_speech.html')
+
+def not_able_speech(request):
+    return render(request, 'namebytyping/not_able_speech.html')
 
 def complete(request):
     if request.session.get('completed_final_survey') == "True":

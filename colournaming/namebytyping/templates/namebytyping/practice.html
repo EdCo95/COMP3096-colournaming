@@ -23,7 +23,7 @@
 <form action="{% url 'namebytyping:practice_done' %}" method="post" id="input-form">
       {% csrf_token %}
 
-      <input type="text" id="happy-to-speak-box" name="happy-to-speak" style="display:none;">
+      <input type="text" id="able-to-speak-box" name="able-to-speak" style="display:none;">
 
     <div class="buttons-and-mic-container">
       <div class="buttons-container">
@@ -37,7 +37,7 @@
         </div>
 
         <div class="button" id="unable-to-speak">
-          <h4>I Am Not Able to Use Speech Recognition</h4>
+          <h4>Speech Recognition Is Not Working</h4>
         </div>
 
       </div>

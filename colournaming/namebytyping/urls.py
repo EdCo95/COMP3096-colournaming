@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^results/$', views.results, name='results'),
     url(r'^no_speech/$', views.no_speech, name='no_speech'),
+    url(r'^not_able_speech/$', views.not_able_speech, name='not_able_speech'),
     url(r'^submit_speak/$', views.submit_speak, name='submit_speak'),
     url(r'^submit_type/$', views.submit_type, name='submit_type'),
     url(r'^submit_speak_type/$', views.submit_speak_type, name='submit_speak_type'),

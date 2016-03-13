@@ -10,7 +10,6 @@
     <div class="title"><h1>Speak/Type Test</h1></div>
     <div class="instructions">
       <p>
-         If you are not currently in a quiet, suitable place or feel uncomfortable using voice recognition, please scroll to the bottom of this text and click the "I am unable to use speech recognition" button. You will then be taken to a typing-only test. <br><br>
          This is a <strong><i>Speaking and Typing Test</i></strong>.
          In this test, you may either speak the name of the colour in the circle,
          or type the name in the textbox. Your computer will automatically listen
@@ -41,20 +40,6 @@
     <div id="begin-button" class="button" onclick="this.parentNode.submit()" name="continue">
       <h4>Practice</h4>
     </div>
-
-    <input type="text" name="user-unwilling" id="user-unwilling" style="display:none;">
-
-    <div class="button" id="unable-to-speak">
-      <h4>I Am Not Able to Use Speech Recognition</h4>
-    </div>
-
-    <script type="text/javascript">
-      $("#unable-to-speak").click(function() {
-        $("#user-unwilling").val("UNWILLING");
-        document.getElementById('input-form').submit();
-      });
-    </script>
-
   </form>
 
   <div class="spacing">
