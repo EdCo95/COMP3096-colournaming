@@ -181,7 +181,7 @@ def begin(request):
     except ValueError:
         age = -1;
 
-    has_speech_recog = request.POST['has-webkit']
+    has_speech_recog = "True";
     test_type = "type"
 
     if has_speech_recog == "True":
@@ -283,7 +283,15 @@ def start_speak_type(request):
 
 
 def next(request):
-    return HttpResponseRedirect(reverse('namebytyping:survey'))
+    has_speech_recog = request.POST['has-webkit']
+
+    if has_speech_recog == "False":
+        return HttpResponseRedirect(reverse('namebytyping:no_speech'))
+    else:
+        return HttpResponseRedirect(reverse('namebytyping:survey'))
+
+def no_speech(request):
+    return render(request, 'namebytyping/no_speech.html')
 
 def complete(request):
     if request.session.get('completed_final_survey') == "True":

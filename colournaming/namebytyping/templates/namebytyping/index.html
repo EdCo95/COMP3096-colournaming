@@ -4,6 +4,8 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'namebytyping/style-instructions.css' %}" />
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="../../static/namebytyping/functions_index.js"></script>
 
 <div class="main-container">
     <div class="title"><h1>Colour Naming</h1></div>
@@ -20,8 +22,11 @@
          questions to answer. All data collected on this website is completely anonymous.
       </p>
     </div>
-  <form action="{% url 'namebytyping:next' %}" method="post">
+  <form action="{% url 'namebytyping:next' %}" method="post" id="input-form">
     {% csrf_token %}
+
+    <input type="text" id="speech-recog-test" name="has-webkit" style="display:none;">
+
     <div id="begin-button" class="button" onclick="this.parentNode.submit()" name="continue">
       <h4>Continue</h4>
     </div>
